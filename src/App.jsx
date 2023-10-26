@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+import Navbar from "./Navbar";
+import MainComp from "./MainComp";
+import tempMovieData from "./TempMovieData.jsx";
+import Search from "./Search";
+import Logo from "./Logo";
+import NumResults from "./Numresults";
+import ListBox from "./ListBox.jsx";
+import WatchedBox from "./WatchedBox.jsx";
+import MovieList from "./MovieList";
+
+import "./style.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState(tempMovieData);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar>
+        <Logo />
+        <Search />
+        <NumResults movies={movies} />
+      </Navbar>
+      <MainComp>
+        <ListBox>
+          <MovieList movies={movies} />
+        </ListBox>
+        <WatchedBox />
+      </MainComp>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
